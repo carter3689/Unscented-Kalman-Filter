@@ -1,5 +1,6 @@
 #include "ukf.h"
 #include "Eigen/Dense"
+#include "tools.h"
 #include <iostream>
 
 using namespace std;
@@ -63,9 +64,9 @@ UKF::UKF() {
 
   lambda_ = 3 - n_x_;
 
-  Xsig_pred_ = MatrixXd(n_x_,2* n_aug_+1);
+  Xsig_pred_ = MatrixXd(n_x_, 2 * n_aug_ + 1);
 
-  weights_ = VectorXd(2 n_aug_ + 1);
+  weights_ = VectorXd(2 * n_aug_ + 1);
 
   NIS_radar_ = 0.0;
 
@@ -162,7 +163,6 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
      UpdateRadar(meas_package);
    }
  }
-}
 
 /**
  * Predicts sigma points, the state, and the state covariance matrix.
